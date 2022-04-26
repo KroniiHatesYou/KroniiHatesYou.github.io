@@ -28,9 +28,12 @@
             xhr.send();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (!sound) {
+                        latest.forEach(x => document.getElementById('latest').appendChild(x));
+                    }
                     if (latest.length > 1000) {
                         latest.shift();
-                        document.getElementById(latest).removeChild(document.getElementById(latest).lastChild);
+                        document.getElementById('latest').removeChild(document.getElementById('latest').lastChild);
                     }
                     
                     const val = xhr.response['value'];
