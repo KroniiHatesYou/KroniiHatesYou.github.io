@@ -2,7 +2,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-    var localCnt = 0;
+    var localCnt = parseInt(localStorage['localCnt'] || '0');
     function rand(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
@@ -13,6 +13,7 @@
         xhr.onload = function() {
             if(sound){
                 localCnt += 1;
+                localStorage['localCnt'] = JSON.stringify(localCnt);
                 document.getElementById('localCnt').innerText = 'Local count : ' + localCnt;
             }
             document.getElementById('visits').innerText = this.response.value;
