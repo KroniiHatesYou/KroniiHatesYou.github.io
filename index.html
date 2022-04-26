@@ -4,64 +4,80 @@
     <title>"I hate you" - Ouro Kronii</title>
     <meta name="description" content="Ouro Kronii tells you she hates you with every click.">
     <script>
-    var localCntSession = 0;
-    var localCntSaved = parseInt(localStorage['localCnt'] || '0');
-    function rand(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
-    function Count(sound = false){
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://api.countapi.xyz/hit/kroniihatesyou.github.io/visits");
-        xhr.responseType = "json";
-        xhr.onload = function() {
-            if(sound){
-                localCntSession += 1;
-                localCntSaved += 1;
-                localStorage['localCnt'] = localCntSaved + '';
-            } else {
-                document.getElementById('localCntSaved').innerText = 'Local count saved : ' + localCntSaved;
+        var localCntSession = 0;
+        var localCntSaved = parseInt(localStorage.localCnt || '0');
+        var latest = JSON.parse(localStorage.latest || '[]');
+        function rand(min, max) {
+          return Math.floor(Math.random() * (max - min)) + min;
+        }
+        function Count(sound = false){
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://api.countapi.xyz/hit/kroniihatesyou.github.io/visits");
+            xhr.responseType = "json";
+            xhr.onload = function() {
+                if(sound){
+                    localCntSession += 1;
+                    localCntSaved += 1;
+                    localStorage.localCnt = localCntSaved + '';
+                } else {
+                    document.getElementById('localCntSaved').innerText = 'Local count saved : ' + localCntSaved;
+                }
+                document.getElementById('localCntSession').innerText = 'Local count this session : ' + localCntSession;
+                document.getElementById('visits').innerText = this.response.value;
             }
-            document.getElementById('localCntSession').innerText = 'Local count this session : ' + localCntSession;
-            document.getElementById('visits').innerText = this.response.value;
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (latest.length > 1000) {
+                        latest.shift();
+                    }
+                    
+                    latest.push(JSON.parse(responseText)['value']);
+                    localStorage.latest = JSON.stringify(latest);
+                }
+            }
+            lst = ['1.wav','2.wav','3.wav','4.wav','5.wav','6.wav','7.wav','8.wav','9.wav','10.wav',
+                   '11.wav','12.wav','13.wav','14.wav','15.wav','16.wav','17.wav','18.wav','19.wav','20.wav',
+                   '21.wav'];
+            if(sound){
+                var audio = new Audio('Sounds/' + lst[rand(0,lst.length)]);
+                audio.play();
+            }
         }
-        xhr.send();
-        lst = ['1.wav','2.wav','3.wav','4.wav','5.wav','6.wav','7.wav','8.wav','9.wav','10.wav',
-               '11.wav','12.wav','13.wav','14.wav','15.wav','16.wav','17.wav','18.wav','19.wav','20.wav',
-               '21.wav'];
-        if(sound){
-            var audio = new Audio('Sounds/' + lst[rand(0,lst.length)]);
-            audio.play();
-        }
-    }
-    Count();
-    timerId = setInterval(Count, 60000);
+        Count();
+        timerId = setInterval(Count, 60000);
     </script>
     <style>
-    .wrap{
-        height : 100%;
-        min-height : 750px;
-        display : flex;
-        justify-content : center;
-        align-items : center;
-    }
-    
-    .hateButton{
-        background:#7325b6;
-        border: none
-    }
-    
-    .hateButton:not(:hover) .image {
-      opacity: 0.7;
-    }
-    
-    .hateButton:hover .image {
-      opacity: 1;
-    }
-    
-    a:link{color:black;}
-    a:visited{color:black;}
-    a:hover{color:black;}
-    a:active{color:black;}
+        .wrap{
+            height : 100%;
+            min-height : 750px;
+            display : flex;
+            justify-content : center;
+            align-items : center;
+        }
+
+        .hateButton{
+            background:#7325b6;
+            border: none
+        }
+
+        .hateButton:not(:hover) .image {
+          opacity: 0.7;
+        }
+
+        .hateButton:hover .image {
+          opacity: 1;
+        }
+
+        a:link{color:black;}
+        a:visited{color:black;}
+        a:hover{color:black;}
+        a:active{color:black;}
+        
+        .yourLatest {
+            height: 150px;
+            overflow-y: auto;
+        }
     
     </style>
     </head>
@@ -69,14 +85,15 @@
         <div class="wrap">
             <div class="box">
                <center>
-                    <h1 style="font-family:papyrus; font-size:50px"><span id="visits">-</span></h1>
-                    <p style="font-family:papyrus; font-size:30px">Global Hate You Counter</p>
-                    <button class="hateButton" type="button" onclick="Count(true)"><img class="image" src="button.png" alt="Button"></button><br><br>
-                    <p id="localCntSession" style="font-family:papyrus; font-size:30px">Local count this session: 0</p>
-                    <p id="localCntSaved" style="font-family:papyrus; font-size:30px">Local count saved: 0</p>
-                    <p style="font-family:papyrus; font-size:20px"> Subscribe <a href="https://www.youtube.com/c/OuroKroniiCh">Ouro Kronii Ch. hololive-EN</a><br></p>
-                    <p style="font-family:papyrus; font-size:15px">Based on <a href="https://onlykronii.github.io/">Global Gwak Counter</a> by <a href="https://twitter.com/KyoKMonnoK">Kyono</a><br></p>
-                    <p style="font-family:papyrus; font-size:15px">Bastardized by george<br></p>
+                   <h1 style="font-family:papyrus; font-size:50px"><span id="visits">-</span></h1>
+                   <p style="font-family:papyrus; font-size:30px">Global Hate You Counter</p>
+                   <button class="hateButton" type="button" onclick="Count(true)"><img class="image" src="button.png" alt="Button"></button><br><br>
+                   <p id="localCntSession" style="font-family:papyrus; font-size:30px">Local count this session: 0</p>
+                   <p id="localCntSaved" style="font-family:papyrus; font-size:30px">Local count saved: 0</p>
+                   <div class="yourLatest"></div>
+                   <p style="font-family:papyrus; font-size:20px"> Subscribe <a href="https://www.youtube.com/c/OuroKroniiCh">Ouro Kronii Ch. hololive-EN</a><br></p>
+                   <p style="font-family:papyrus; font-size:15px">Based on <a href="https://onlykronii.github.io/">Global Gwak Counter</a> by <a href="https://twitter.com/KyoKMonnoK">Kyono</a><br></p>
+                   <p style="font-family:papyrus; font-size:15px">Bastardized by george<br></p>
                </center>
            </div>
        </div>
