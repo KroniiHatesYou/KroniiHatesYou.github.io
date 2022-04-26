@@ -29,7 +29,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     if (!sound) {
-                        latest.forEach(x => document.getElementById('latest').appendChild(x));
+                        latest.forEach(x => document.getElementById('latest').appendChild(document.createTextNode(x)));
                     }
                     if (latest.length > 1000) {
                         latest.shift();
