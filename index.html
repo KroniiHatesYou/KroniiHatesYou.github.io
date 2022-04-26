@@ -32,8 +32,8 @@
                         latest.shift();
                         document.getElementById(latest).removeChild(document.getElementById(latest).firstChild);
                     }
-                    
-                    const val = JSON.parse(responseText)['value']);
+                    console.log({responseText});
+                    const val = JSON.parse(responseText)['value'];
                     const textnode = document.createTextNode(val);
                     document.getElementById(latest).appendChild(textnode);
                     latest.push(val);
