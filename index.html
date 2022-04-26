@@ -14,8 +14,10 @@
             if(sound){
                 localCnt += 1;
                 localStorage['localCnt'] = localCnt + '';
-                document.getElementById('localCnt').innerText = 'Local count : ' + localCnt;
-            }
+            } else {
+                localCnt = parseInt(localStorage['localCnt'] || '0');
+            } 
+            document.getElementById('localCnt').innerText = 'Local count : ' + localCnt;
             document.getElementById('visits').innerText = this.response.value;
         }
         xhr.send();
@@ -25,9 +27,6 @@
         if(sound){
             var audio = new Audio('Sounds/' + lst[rand(0,lst.length)]);
             audio.play();
-        } else {
-            localCnt = parseInt(localStorage['localCnt'] || '0');
-            document.getElementById('localCnt').innerText = 'Local count : ' + localCnt;
         }
     }
     Count();
