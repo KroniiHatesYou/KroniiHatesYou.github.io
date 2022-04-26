@@ -30,9 +30,13 @@
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     if (latest.length > 1000) {
                         latest.shift();
+                        document.getElementById(latest).removeChild(document.getElementById(latest).firstChild);
                     }
                     
-                    latest.push(JSON.parse(responseText)['value']);
+                    const val = JSON.parse(responseText)['value'];
+                    const textnode = document.createTextNode(val);
+                    document.getElementById(latest).appendChild(textnode);
+                    latest.push(val);
                     localStorage.latest = JSON.stringify(latest);
                 }
             }
@@ -74,7 +78,7 @@
         a:hover{color:black;}
         a:active{color:black;}
         
-        .yourLatest {
+        #latest {
             height: 150px;
             overflow-y: auto;
         }
@@ -90,7 +94,7 @@
                    <button class="hateButton" type="button" onclick="Count(true)"><img class="image" src="button.png" alt="Button"></button><br><br>
                    <p id="localCntSession" style="font-family:papyrus; font-size:30px">Local count this session: 0</p>
                    <p id="localCntSaved" style="font-family:papyrus; font-size:30px">Local count saved: 0</p>
-                   <div class="yourLatest"></div>
+                   <div id="latest"></div>
                    <p style="font-family:papyrus; font-size:20px"> Subscribe <a href="https://www.youtube.com/c/OuroKroniiCh">Ouro Kronii Ch. hololive-EN</a><br></p>
                    <p style="font-family:papyrus; font-size:15px">Based on <a href="https://onlykronii.github.io/">Global Gwak Counter</a> by <a href="https://twitter.com/KyoKMonnoK">Kyono</a><br></p>
                    <p style="font-family:papyrus; font-size:15px">Bastardized by george<br></p>
