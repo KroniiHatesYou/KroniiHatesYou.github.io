@@ -16,9 +16,10 @@
                 localCntSession += 1;
                 localCntSaved += 1;
                 localStorage['localCnt'] = localCntSaved + '';
+            } else {
+                document.getElementById('localCntSaved').innerText = 'Local count total : ' + localCntSaved;
             }
             document.getElementById('localCntSession').innerText = 'Local count this session : ' + localCntSession;
-            document.getElementById('localCntSaved').innerText = 'Local count total : ' + localCntSaved;
             document.getElementById('visits').innerText = this.response.value;
         }
         xhr.send();
