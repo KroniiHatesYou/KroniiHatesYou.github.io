@@ -2,7 +2,8 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-    var localCnt = parseInt(localStorage['localCnt'] || '0');
+    var localCntSession = 0;
+    var localCntSaved = parseInt(localStorage['localCnt'] || '0');
     function rand(min, max) {
       return Math.floor(Math.random() * (max - min)) + min;
     }
@@ -12,10 +13,12 @@
         xhr.responseType = "json";
         xhr.onload = function() {
             if(sound){
-                localCnt += 1;
-                localStorage['localCnt'] = localCnt + '';
+                localCntSession += 1;
+                localCntSaved += 1;
+                localStorage['localCnt'] = localCntSaved + '';
             }
-            document.getElementById('localCnt').innerText = 'Local count : ' + localCnt;
+            document.getElementById('localCntSession').innerText = 'Local count this session : ' + localCntSession;
+            document.getElementById('localCntSaved').innerText = 'Local count total : ' + localCntSaved;
             document.getElementById('visits').innerText = this.response.value;
         }
         xhr.send();
@@ -65,7 +68,8 @@
                     <h1 style="font-family:papyrus; font-size:50px"><span id="visits">-</span></h1>
                     <p style="font-family:papyrus; font-size:30px">Global Hate You Counter</p>
                     <button class="hateButton" type="button" onclick="Count(true)"><img class="image"  src="button.png" alt="Button"></button><br><br>
-                    <p id="localCnt" style="font-family:papyrus; font-size:30px">Local count : 0</p>
+                    <p id="localCntSession" style="font-family:papyrus; font-size:30px">Local count this session: 0</p>
+                    <p id="localCntSaved" style="font-family:papyrus; font-size:30px">Local count total: 0</p>
                     <p style="font-family:papyrus; font-size:20px"> Subscribe <a href="https://www.youtube.com/c/OuroKroniiCh">Ouro Kronii Ch. hololive-EN</a><br></p>
                     <p style="font-family:papyrus; font-size:15px">Based on Original Script by <a href="https://twitter.com/KyoKMonnoK">Kyono</a><br></p>
                     <p style="font-family:papyrus; font-size:15px">Bastardized by george<br></p>
