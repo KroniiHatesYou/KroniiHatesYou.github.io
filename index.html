@@ -31,7 +31,7 @@
                     if (!sound) {
                         latest.forEach(x => document.getElementById('latest').appendChild(document.createTextNode(x)));
                     }
-                    if (latest.length > 1000) {
+                    if (latest.length > 100) {
                         latest.shift();
                         document.getElementById('latest').removeChild(document.getElementById('latest').lastChild);
                     }
