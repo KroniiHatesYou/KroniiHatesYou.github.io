@@ -14,9 +14,7 @@
             if(sound){
                 localCnt += 1;
                 localStorage['localCnt'] = localCnt + '';
-            } else {
-                localCnt = parseInt(localStorage['localCnt'] || '0');
-            } 
+            }
             document.getElementById('localCnt').innerText = 'Local count : ' + localCnt;
             document.getElementById('visits').innerText = this.response.value;
         }
