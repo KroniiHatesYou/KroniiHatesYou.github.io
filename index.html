@@ -30,13 +30,13 @@
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     if (latest.length > 1000) {
                         latest.shift();
-                        document.getElementById(latest).removeChild(document.getElementById(latest).firstChild);
+                        document.getElementById(latest).removeChild(document.getElementById(latest).lastChild);
                     }
                     
                     const val = xhr.response['value'];
                     const entry = document.createElement('li');
                     const textnode = entry.appendChild(document.createTextNode(val));
-                    document.getElementById('latest').appendChild(entry);
+                    entry.insertBefore(document.getElementById('latest').firstChild);
                     latest.push(val);
                     localStorage.latest = JSON.stringify(latest);
                 }
