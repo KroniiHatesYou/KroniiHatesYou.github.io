@@ -29,7 +29,11 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     if (!sound) {
-                        latest.forEach(x => document.getElementById('latest').appendChild(document.createTextNode(x)));
+                        latest.forEach(x => {
+                            const entry = document.createElement('li');
+                            entry.appendChild(document.createTextNode(x));
+                            document.getElementById('latest').appendChild(entry)
+                        });
                     }
                     if (latest.length > 100) {
                         latest.shift();
@@ -38,7 +42,7 @@
                     
                     const val = xhr.response['value'];
                     const entry = document.createElement('li');
-                    const textnode = entry.appendChild(document.createTextNode(val));
+                    entry.appendChild(document.createTextNode(val));
                     document.getElementById('latest').insertBefore(entry, document.getElementById('latest').firstChild);
                     latest.push(val);
                     localStorage.latest = JSON.stringify(latest);
