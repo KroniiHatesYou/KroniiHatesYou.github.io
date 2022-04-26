@@ -35,7 +35,7 @@
                     
                     const val = xhr.response['value'];
                     const entry = document.createElement('li');
-                    const textnode = entry.createTextNode(val);
+                    const textnode = entry.appendChild(document.createTextNode(val);
                     document.getElementById('latest').appendChild(entry);
                     latest.push(val);
                     localStorage.latest = JSON.stringify(latest);
