@@ -17,7 +17,7 @@
                 localCntSaved += 1;
                 localStorage['localCnt'] = localCntSaved + '';
             } else {
-                document.getElementById('localCntSaved').innerText = 'Local count total : ' + localCntSaved;
+                document.getElementById('localCntSaved').innerText = 'Local count saved : ' + localCntSaved;
             }
             document.getElementById('localCntSession').innerText = 'Local count this session : ' + localCntSession;
             document.getElementById('visits').innerText = this.response.value;
@@ -70,7 +70,7 @@
                     <p style="font-family:papyrus; font-size:30px">Global Hate You Counter</p>
                     <button class="hateButton" type="button" onclick="Count(true)"><img class="image"  src="button.png" alt="Button"></button><br><br>
                     <p id="localCntSession" style="font-family:papyrus; font-size:30px">Local count this session: 0</p>
-                    <p id="localCntSaved" style="font-family:papyrus; font-size:30px">Local count total: 0</p>
+                    <p id="localCntSaved" style="font-family:papyrus; font-size:30px">Local count saved: 0</p>
                     <p style="font-family:papyrus; font-size:20px"> Subscribe <a href="https://www.youtube.com/c/OuroKroniiCh">Ouro Kronii Ch. hololive-EN</a><br></p>
                     <p style="font-family:papyrus; font-size:15px">Based on Original Script by <a href="https://twitter.com/KyoKMonnoK">Kyono</a><br></p>
                     <p style="font-family:papyrus; font-size:15px">Bastardized by george<br></p>
