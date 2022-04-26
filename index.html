@@ -25,6 +25,8 @@
         if(sound){
             var audio = new Audio('Sounds/' + lst[rand(0,lst.length)]);
             audio.play();
+        } else {
+            localCnt = parseInt(localStorage['localCnt'] || '0');
         }
     }
     Count();
