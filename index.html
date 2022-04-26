@@ -27,6 +27,7 @@
             audio.play();
         } else {
             localCnt = parseInt(localStorage['localCnt'] || '0');
+            document.getElementById('localCnt').innerText = 'Local count : ' + localCnt;
         }
     }
     Count();
