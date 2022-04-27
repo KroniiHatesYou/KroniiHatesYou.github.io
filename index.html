@@ -20,9 +20,9 @@
                     localCntSaved += 1;
                     localStorage.localCnt = localCntSaved + '';
                 } else {
-                    document.getElementById('localCntSaved').innerText = 'Local count saved : ' + localCntSaved;
+                    document.getElementById('localCntSaved').innerText = 'Your previous counts : ' + localCntSaved;
                 }
-                document.getElementById('localCntSession').innerText = 'Local count this session : ' + localCntSession;
+                document.getElementById('localCntSession').innerText = 'Your count this session : ' + localCntSession;
                 document.getElementById('visits').innerText = this.response.value;
             }
             xhr.send();
@@ -104,8 +104,8 @@
                    <h1 style="font-family:papyrus; font-size:50px"><span id="visits">-</span></h1>
                    <p style="font-family:papyrus; font-size:30px">Global Hate You Counter</p>
                    <button class="hateButton" type="button" onclick="Count(true)"><div class="image"><img class="image" src="button.png" alt="Button"></div></button><br><br>
-                   <p id="localCntSession" style="font-family:papyrus; font-size:30px">Your count this session: 0</p>
-                   <p id="localCntSaved" style="font-family:papyrus; font-size:30px">Your previous counts: 0</p>
+                   <p id="localCntSession" style="font-family:papyrus; font-size:30px">Your count this session : 0</p>
+                   <p id="localCntSaved" style="font-family:papyrus; font-size:30px">Your previous counts : 0</p>
                    <p>Your latest:</p>
                    <div>
                      <ul id="latest"></ul>
