@@ -9,7 +9,7 @@
         var latest = JSON.parse(localStorage.latest || '[]');
         
         function randSoundClip(lst) {
-            return lstLong[rand(0, lstLong.length)];
+            return lst[rand(0, lst.length)];
         }
         function rand(min, max) {
           return Math.floor(Math.random() * (max - min)) + min;
