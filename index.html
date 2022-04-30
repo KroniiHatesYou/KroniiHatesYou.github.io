@@ -15,7 +15,7 @@
             xhr.open("GET", "https://api.countapi.xyz/hit/kroniihatesyou.github.io/visits");
             xhr.responseType = "json";
             xhr.onload = function() {
-                if(sound){
+                if (sound) {
                     localCntSession += 1;
                     localCntSaved += 1;
                     localStorage.localCnt = localCntSaved + '';
