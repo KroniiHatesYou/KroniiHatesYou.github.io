@@ -52,7 +52,7 @@
                    '21.wav','22.wav'];
             lstLong = ['23.wav'];
             if (sound) {
-                var audio = new Audio('Sounds/' + rand(0, 1000) === 0 ? lstLong[rand(0, lstLong.length)] : lstShort[rand(0, lstShort.length)]);
+                var audio = new Audio('Sounds/' + (rand(0, 1000) === 0 ? lstLong[rand(0, lstLong.length)] : lstShort[rand(0, lstShort.length)]));
                 
                 audio.play();
             }
