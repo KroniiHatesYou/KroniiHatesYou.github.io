@@ -37,13 +37,14 @@
                             entry.appendChild(document.createTextNode(x));
                             document.getElementById('latest').appendChild(entry)
                         });
+                        
+                        return;
                     }
                     if (latest.length > 100) {
                         latest.shift();
                         document.getElementById('latest').removeChild(document.getElementById('latest').lastChild);
                     }
                     
-                    console.log(latest);
                     const val = xhr.response['value'];
                     const entry = document.createElement('li');
                     entry.appendChild(document.createTextNode(val));
