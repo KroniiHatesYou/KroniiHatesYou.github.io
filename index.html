@@ -37,14 +37,14 @@
                             entry.appendChild(document.createTextNode(x));
                             document.getElementById('latest').appendChild(entry)
                         });
-
+                        
                         return;
                     }
                     if (latest.length > 100) {
                         latest.shift();
                         document.getElementById('latest').removeChild(document.getElementById('latest').lastChild);
                     }
-
+                    
                     const val = xhr.response['value'];
                     const entry = document.createElement('li');
                     entry.appendChild(document.createTextNode(val));
@@ -53,13 +53,12 @@
                     localStorage.latest = JSON.stringify(latest);
                 }
             }
-
+            
             const lstShort = ['1.wav','2.wav','3.wav','4.wav','5.wav','6.wav','7.wav','8.wav','9.wav','10.wav',
                    '11.wav','13.wav','14.wav','15.wav','16.wav','17.wav','18.wav',
                    '22.wav'];
             const lstBreath = ['12.wav','19.wav','20.wav','21.wav',];
             const lstLong = ['23.wav', '24.mp3', '25.mp3'];
-            
             if (count) {
                 const soundToPlay = rand(0, 50) === 0 ? randSoundClip(lstLong) : rand(0, 20) === 0 ? randSoundClip(lstBreath) : randSoundClip(lstShort);
                 var audio = new Audio('Sounds/' + soundToPlay);
@@ -67,6 +66,7 @@
                 audio.play();
             }
         }
+        Count();
         timerId = setInterval(Count, 60000);
     </script>
     <style>
