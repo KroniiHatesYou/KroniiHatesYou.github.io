@@ -61,9 +61,9 @@
                 '31.wav','32.wav','33.wav',
             ];
             const lstBreath = ['12.wav','19.wav','20.wav','21.wav',];
-            const lstLong = ['23.wav', '24.wav', '25.wav', '30.wav',];
+            const lstLong = ['23.wav', '24.wav', '25.wav', '30.wav', '34.wav',];
             if (count) {
-                const soundToPlay = rand(0, 50) === 0 ? randSoundClip(lstLong) : rand(0, 20) === 0 ? randSoundClip(lstBreath) : randSoundClip(lstShort);
+                const soundToPlay = rand(0, 50) === 0 ? randSoundClip(lstLong) : rand(0, 50) === 0 ? randSoundClip(lstBreath) : randSoundClip(lstShort);
                 var audio = new Audio('Sounds/' + soundToPlay);
                 
                 audio.play();
