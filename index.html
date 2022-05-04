@@ -56,9 +56,10 @@
             
             const lstShort = ['1.wav','2.wav','3.wav','4.wav','5.wav','6.wav','7.wav','8.wav','9.wav','10.wav',
                    '11.wav','13.wav','14.wav','15.wav','16.wav','17.wav','18.wav',
-                   '22.wav','26.wav',];
+                   '22.wav','26.wav',
+                   '27.wav','28.wav','29.wav','31.wav','32.wav',];
             const lstBreath = ['12.wav','19.wav','20.wav','21.wav',];
-            const lstLong = ['23.wav', '24.mp3', '25.mp3'];
+            const lstLong = ['23.wav', '24.mp3', '25.mp3', '30.wav',];
             if (count) {
                 const soundToPlay = rand(0, 50) === 0 ? randSoundClip(lstLong) : rand(0, 20) === 0 ? randSoundClip(lstBreath) : randSoundClip(lstShort);
                 var audio = new Audio('Sounds/' + soundToPlay);
